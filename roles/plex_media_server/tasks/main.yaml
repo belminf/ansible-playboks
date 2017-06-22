@@ -1,0 +1,21 @@
+---
+- name: update apt cache
+  apt: update_cache=yes
+  changed_when: no
+
+- name: install apt-get HTTPS support
+  apt: name=apt-transport-https state=latest
+
+- name: install dev2day apt key
+  apt_key: url=https://dev2day.de/pms/dev2day-pms.gpg.key
+
+- name: install dev2day apt repo
+  apt_repository:
+    repo: deb https://dev2day.de/pms/ jessie main
+    update_cache: yes
+
+- name: install PMS package
+  apt: name=plexmediaserver
+
+- name: add user to shared_media group
+  user: name=plex groups=shared_media append=yes
