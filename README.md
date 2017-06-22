@@ -16,6 +16,7 @@ Assuming [apt-cyg](https://github.com/transcode-open/apt-cyg) installed.
 
 # Playbooks
 Example of running on one host:
+
     $ ansible-playbook --check -i 192.168.5.55, playbooks/raspberry_pi.yaml 
 
 
