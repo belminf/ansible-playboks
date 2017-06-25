@@ -16,5 +16,5 @@
     - { name: 'rpc-whitelist', value: "\"{{ transmission_whitelist }}\"" }
     - { name: 'port-forwarding-enabled', value: "{{ transmission_port_fwd }}" }
     - { name: 'peer-port-random-on-start', value: "{{ transmission_random_port }}" }
-    - { name: 'ratio-limit', value: "{{ transmission_ratio_limit }}" }
+    - { name: 'ratio-limit', value: "{{ '%.4f'|format(transmission_ratio_limit|float) }}" }
     - { name: 'ratio-limit-enabled', value: "{{ transmission_ratio_enabled }}" }
