@@ -1,0 +1,3 @@
+---
+- include: raspberry-pi/transmission.yml
+- include: raspberry-pi/pms.yml
