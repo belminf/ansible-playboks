@@ -18,3 +18,4 @@
     - { name: 'peer-port-random-on-start', value: "{{ transmission_random_port }}" }
     - { name: 'ratio-limit', value: "{{ '%.4f'|format(transmission_ratio_limit|float) }}" }
     - { name: 'ratio-limit-enabled', value: "{{ transmission_ratio_enabled }}" }
+  notify: reload configuration
