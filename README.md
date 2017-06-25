@@ -5,7 +5,7 @@ Collection of personal Ansible playbooks.
 ### Cygwin
 Assuming [apt-cyg](https://github.com/transcode-open/apt-cyg) installed.
 
-    $ apt-cyg install gcc-core openssl-devel
+    $ apt-cyg install gcc-core openssl-devel python2-devel libffi-devel make
     $ export CFLAGS="-D_DEFAULT_SOURCE"
 
 ### Ubuntu
