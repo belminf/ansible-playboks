@@ -15,10 +15,16 @@ Assuming [apt-cyg](https://github.com/transcode-open/apt-cyg) installed.
     $ pip install -r requirements.txt
 
 # Playbooks
-Example of running on one host:
+## Roles
+* plex_media_server - Installs PMS using `dev2day.de` repo
+* transmission - Installs and configures the Torrent client
 
-    $ ansible-playbook --check -i 192.168.5.55, playbooks/raspberry_pi.yaml 
+## Example playbook runs
+### Raspberry Pi
+All roles:
 
+    $ ansible-playbook -i raspberrypi, playbooks/raspberry-pi.yaml 
 
-## raspberry_pi
-* Installs Plex Media Server
+Just Transmission role:
+
+    $ ansible-playbook -i raspberrypi, --extra-vars 'transmission_ratio_limit=7.5' playbooks/raspberry-pi/transmission.yml
