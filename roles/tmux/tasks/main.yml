@@ -1,0 +1,16 @@
+- name: update apt cache
+  apt: update_cache=yes
+  become: yes
+  changed_when: no
+
+- name: install packages
+  apt: name={{ item }} state=latest
+  become: yes
+  with_items:
+    - tmux
+
+- name: my config
+  git: repo=ssh://git@github.com:belminf/dottmux.git dest=~/.tmux accept_hostkey=yes update=yes recursive=yes
+
+- name: link new config
+  file: src=~/.tmux/tmux.conf dest=~/.tmux.conf state=link
