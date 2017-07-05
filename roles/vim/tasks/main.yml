@@ -2,6 +2,7 @@
   apt: update_cache=yes
   become: yes
   changed_when: no
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: install vim requirements
   apt: name={{ item }} state=latest
@@ -12,12 +13,12 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: my vim config
-  git: repo=ssh://git@github.com/belminf/dotvim.git dest=~/.vim accept_hostkey=yes update=yes recursive=yes
+  git: repo=ssh://git@github.com/belminf/dotvim.git dest=~/.vim accept_hostkey=yes update=yes recursive=yes force=yes
   register: vim_git
 
 - name: link new vim
-  file: src=~/.vim/vimrc dest=~/.vimrc state=link
+  file: src=~/.vim/rc.vim dest=~/.vimrc state=link
 
 - name: install vim plugins
-  command: vim +PluginInstall +qall
+  command: vim +PlugInstall +qall
   when: vim_git.changed

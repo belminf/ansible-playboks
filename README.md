@@ -20,6 +20,11 @@ Assuming [apt-cyg](https://github.com/transcode-open/apt-cyg) installed.
 * transmission - Installs and configures the Torrent client
 
 ## Example playbook runs
+### Local
+Apply a role:
+
+    $ ansible-playbook -i localhost, -c local playbooks/roles/vim.yml
+
 ### Raspberry Pi
 All roles:
 
