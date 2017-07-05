@@ -9,6 +9,7 @@
   with_items:
     - vim
     - silversearcher-ag
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: my vim config
   git: repo=ssh://git@github.com/belminf/dotvim.git dest=~/.vim accept_hostkey=yes update=yes recursive=yes
