@@ -1,10 +1,10 @@
-- name: install pip
+- name: pip
   apt: name={{ item }} state=latest
   become: yes
   with_items:
     - python-pip
 
-- name: install python dev packages
+- name: dev packages
   pip: name={{ item }} state=latest
   become: yes
   with_items:
