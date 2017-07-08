@@ -10,7 +10,7 @@
     - tmux
 
 - name: my config
-  git: repo=ssh://git@github.com:belminf/dottmux.git dest=~/.tmux accept_hostkey=yes update=yes recursive=yes
+  git: repo=ssh://git@github.com/belminf/dottmux.git dest=~/.tmux accept_hostkey=yes update=yes
 
 - name: link new config
   file: src=~/.tmux/tmux.conf dest=~/.tmux.conf state=link
