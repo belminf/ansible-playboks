@@ -9,7 +9,7 @@ Assuming [apt-cyg](https://github.com/transcode-open/apt-cyg) installed.
     $ export CFLAGS="-D_DEFAULT_SOURCE"
 
 ### Ubuntu
-    $ sudo apt-get update && sudo apt-get install -y libssl-dev python-pip
+    $ sudo apt-get update && sudo apt-get install -y libssl-dev libffi-dev python-pip
 
 ## Python
     $ pip install -r requirements.txt
