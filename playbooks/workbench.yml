@@ -1,7 +1,7 @@
+- include: linux.yml
+
 - hosts: all
   roles:
     - golang
     - python
-    - vim
-    - bash
     - tmux
