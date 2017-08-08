@@ -2,4 +2,4 @@
   git: repo=ssh://git@github.com/belminf/dotbash.git dest=~/.bash accept_hostkey=yes update=yes
 
 - name: link new config
-  file: src=~/.bash/rc.sh dest=~/.bashrc state=link
+  file: src=~/.bash/rc.sh dest=~/.bashrc state=link force=true
