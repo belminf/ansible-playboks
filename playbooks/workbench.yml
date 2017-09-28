@@ -1,4 +1,4 @@
-- include: linux.yml
+- import_playbook: linux.yml
 
 - hosts: all
   roles:
