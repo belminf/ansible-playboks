@@ -7,3 +7,11 @@
     redir https://{{ site_name }}
 }
 {% endif %}
+{% if proxies is defined %}
+{% for this_proxy in proxies %}
+
+{{ this_proxy['from'] }} {
+    proxy / {{ this_proxy['to'] }}
+}
+{% endfor %}
+{% endif %}
