@@ -1,6 +1,0 @@
----
-- hosts: all
-  remote_user: pi
-  become: yes
-  roles:
-    - plex_media_server
