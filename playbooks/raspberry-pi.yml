@@ -2,6 +2,8 @@
 - hosts: all
   remote_user: pi
   become: yes
+  vars:
+
   roles:
     - plex_media_server
     - transmission

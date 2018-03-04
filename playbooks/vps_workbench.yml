@@ -1,6 +1,9 @@
 - import_playbook: linux.yml
 
 - hosts: all
+  vars:
+    caddy_root: /srv/caddy
+    site_name: belm.info
   roles:
     - golang
     - python
