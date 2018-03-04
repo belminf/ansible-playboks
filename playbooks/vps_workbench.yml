@@ -13,5 +13,7 @@
       caddy_root: /srv/caddy
       site_name: belm.in
       redirects: www.belm.in, belm.info, workbench.belm.info
-      tags:
-        update_website
+      tags: update_website
+    -
+      role: postgresql
+      tags: db

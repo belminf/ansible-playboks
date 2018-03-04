@@ -1,0 +1,11 @@
+- name: install packages
+  apt: name={{ item }} update_cache=true state=latest
+  with_items:
+    - postgresql
+    - postgresql-contrib
+    - python-psycopg2
+  become: yes
+
+- name: setup service
+  service: name=postgresql state=started enabled=yes
+  become: yes
