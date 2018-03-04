@@ -1,6 +1,8 @@
 - import_playbook: linux.yml
 
 - hosts: all
+  vars_files:
+    - vault.yml
   vars:
     caddy_root: /srv/caddy
     site_name: belm.info
@@ -13,7 +15,15 @@
       caddy_root: /srv/caddy
       site_name: belm.in
       redirects: www.belm.in, belm.info, workbench.belm.info
+      proxies:
+        - from: git.belm.in
+          to: gogs:3000
       tags: update_website
     -
       role: postgresql
       tags: db
+    -
+      role: gogs
+      gogs_root: /srv/gogs
+      gogs_db_pw: '{{ vault_gogs_db_pw }}'
+      tags: gogs
