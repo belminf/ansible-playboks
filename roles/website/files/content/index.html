@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Sans|Coming+Soon" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript">
+    var allQuotes;
+    var quoteIndex;
+
+    function loadAQuote(direction) {
+
+      direction = typeof direction !== 'undefined' ? direction : 1;
+
+      $.get('quotes.txt', function(txtFile) {
+
+        // Load quotes if we haven't yet
+        if (allQuotes == null) {
+          allQuotes = txtFile.trim().split("\n");
+        }
+
+        // Set initial quote index
+        if (quoteIndex == null) {
+          quoteIndex = Math.floor(Math.random()*allQuotes.length); 
+        }
+
+        // Increment quote index
+        else {
+          quoteIndex = (quoteIndex + direction) % allQuotes.length;
+
+          if (quoteIndex < 0) {
+            quoteIndex = allQuotes.length - 1; 
+          }
+        }
+
+        // Get quote parts
+        var randQuote = allQuotes[quoteIndex].split("--")
+        var quoteText = randQuote[0].trim();
+        var quoteAuthor = randQuote[1].trim();
+
+        // Display quote
+        $('#quote_text').html(quoteText);
+        $('#quote_author').html(quoteAuthor)
+      });
+    }
+
+    // Load first quote
+    $(document).ready(loadAQuote);
+  </script>
+  <title>belm.info</title>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="links">
+      <ul>
+        <li><a href="http://linkedin.com/in/belminf"><i title="LinkedIn" class="fa fa-linkedin fa-2x"></i></a></li>
+        <li><a href="https://github.com/belminf"><i title="GitHub" class="fa fa-github fa-2x"></i></a></li>
+        <li><a href="http://stackexchange.com/users/197692/belmin-fernandez"><i title="StackExchange" class="fa fa-stack-overflow fa-2x"></i></a></li>
+        <li><a href="https://www.reddit.com/user/ec3sci/"><i title="Reddit" class="fa fa-reddit-alien fa-2x"></i></a></li>
+        <li><a href="https://www.goodreads.com/user/show/22667162-belmin-fernandez"><i title="Goodreads" class="fa fa-book fa-2x"></i></a></li>
+        <li><a href="http://www.amazon.com/wishlist/3IDARCJSVRVH9"><i title="Amazon Wishlist" class="fa fa-amazon fa-2x"></i></a></li>
+      </ul>
+      <p id="email"><a href='mailto&#58;bel%&#54;Di%6E%&#54;6&#64;g&#109;&#97;%6&#57;%6C&#46;c%6Fm'><i title="E-mail" class="fa fa-envelope-o fa-fw"></i> &#98;elm&#105;n&#102;&#64;gma&#105;l&#46;c&#111;&#109;</a></p>
+    </div>
+  </div>
+</body>
+</html>

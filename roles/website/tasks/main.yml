@@ -1,0 +1,25 @@
+- name: ensure Caddy data dir structure
+  file: path={{ caddy_root }}/sites state=directory recurse=yes
+
+- name: website content data volume
+  synchronize: src=files/content/ dest={{ caddy_root }}/sites/{{ site_name }} recursive=yes delete=yes
+
+- name: caddy configuration file
+  template: src=templates/Caddyfile.j2 dest={{ caddy_root }}/Caddyfile
+
+- name: modify UFW to allow port
+  ufw: rule=allow port=443,80 proto=tcp
+  become: yes
+
+- name: run Caddy docker container
+  docker_container:
+    name: caddy
+    image: zzrot/alpine-caddy
+    restart_policy: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "{{ caddy_root }}/sites/{{ site_name }}:/var/www/html"
+      - "{{ caddy_root }}/Caddyfile:/etc/Caddyfile"
+  become: yes
