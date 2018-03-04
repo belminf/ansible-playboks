@@ -1,2 +1,9 @@
-{{ site_name }}
-root /var/www/html
+{{ site_name }} {
+    root /var/www/html
+}
+{% if redirects is defined %}
+
+{{ redirects }} {
+    redir https://{{ site_name }}
+}
+{% endif %}

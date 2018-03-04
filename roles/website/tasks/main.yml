@@ -1,5 +1,6 @@
 - name: ensure Caddy data dir structure
-  file: path={{ caddy_root }}/sites state=directory recurse=yes
+  file: path={{ caddy_root }}/sites state=directory recurse=yes owner={{ ansible_user_id }}
+  become: yes
 
 - name: website content data volume
   synchronize: src=files/content/ dest={{ caddy_root }}/sites/{{ site_name }} recursive=yes delete=yes

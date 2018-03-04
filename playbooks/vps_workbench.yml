@@ -8,4 +8,10 @@
     - golang
     - python
     - tmux
-    - website
+    - 
+      role: website
+      caddy_root: /srv/caddy
+      site_name: belm.in
+      redirects: www.belm.in, belm.info, workbench.belm.info
+      tags:
+        update_website
