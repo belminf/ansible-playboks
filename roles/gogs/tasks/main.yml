@@ -27,7 +27,8 @@
     restart_policy: unless-stopped
     ports:
       - "1022:22"
-      - "10080:3000"
     volumes:
       - "{{ gogs_root }}:/data"
+    networks:
+      - name: frontend
   become: yes
