@@ -1,7 +1,15 @@
-- name: ensure pip installed
+- name: install pip
   apt: name=python-pip state=latest
   become: yes
 
-- name: ensure docker-py installed
+- name: install docker-py
   pip: name=docker-py state=latest
+  become: yes
+
+- name: enable service
+  systemd: name=docker state=started enabled=yes
+  become: yes
+
+- name: create frontend network
+  docker_network: name=frontend
   become: yes
