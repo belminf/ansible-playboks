@@ -23,4 +23,6 @@
     volumes:
       - "{{ caddy_root }}/sites/{{ site_name }}:/var/www/html"
       - "{{ caddy_root }}/Caddyfile:/etc/Caddyfile"
+    networks:
+      - name: frontend
   become: yes
