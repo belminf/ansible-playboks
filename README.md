@@ -20,7 +20,7 @@ Apply a role:
 
     $ ansible-playbook -i localhost, -c local playbooks/roles/vim.yml
 
-## Remote
+### Remote
 Apply a playbook
 
     $ ansible-playbook -i 192.168.3.200, playbooks/linux.yml
