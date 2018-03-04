@@ -1,0 +1,33 @@
+- name: create DB
+  vars:
+    ansible_ssh_pipelining: true
+  postgresql_db:
+    name: gogs
+  become_user: postgres
+  become: yes
+
+- name: create DB user
+  vars:
+    ansible_ssh_pipelining: true
+  postgresql_user:
+    name: gogs
+    db: gogs
+    password: '{{ gogs_db_pw }}'
+  become_user: postgres
+  become: yes
+
+- name: ensure Gogs data dir structure
+  file: path={{ gogs_root }} state=directory recurse=yes owner={{ ansible_user_id }}
+  become: yes
+
+- name: run Gogs docker container
+  docker_container:
+    name: gogs
+    image: gogs/gogs
+    restart_policy: unless-stopped
+    ports:
+      - "1022:22"
+      - "10080:3000"
+    volumes:
+      - "{{ gogs_root }}:/data"
+  become: yes
