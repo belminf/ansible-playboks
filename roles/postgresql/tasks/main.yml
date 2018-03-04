@@ -6,6 +6,15 @@
     - python-psycopg2
   become: yes
 
+- name: update hba config
+  copy:
+    src: pg_hba.conf
+    dest: /etc/postgresql/9.5/main/pg_hba.conf
+    owner: postgres
+    group: postgres
+    mode: 0640
+  become: yes
+
 - name: setup service
   service: name=postgresql state=started enabled=yes
   become: yes
