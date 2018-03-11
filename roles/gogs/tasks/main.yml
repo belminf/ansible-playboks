@@ -26,10 +26,14 @@
     image: gogs/gogs
     restart_policy: unless-stopped
     ports:
-      - "1022:22"
+      - "{{ gogs_ssh_port }}:22"
     volumes:
       - "{{ gogs_root }}:/data"
       - /var/run/postgresql:/var/run/postgresql
     networks:
       - name: frontend
+  become: yes
+
+- name: modify UFW to SSH
+  ufw: rule=allow port={{ gogs_ssh_port }} proto=tcp
   become: yes

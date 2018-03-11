@@ -26,4 +26,5 @@
       role: gogs
       gogs_root: /srv/gogs
       gogs_db_pw: '{{ vault_gogs_db_pw }}'
+      gogs_ssh_port: 1022
       tags: gogs
