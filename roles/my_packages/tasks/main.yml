@@ -1,5 +1,5 @@
 ---
-- name: install my packages
+- name: install packages
   apt: name={{ item }} state=latest
   become: yes
   with_items:
@@ -20,3 +20,11 @@
     - unzip
     - jq
     - whois
+
+- name: add fasd apt repo
+  apt_repository: repo="ppa:aacebedo/fasd"
+  become: yes
+
+- name: install fasd package
+  apt: name=fasd state=latest update_cache=yes
+  become: yes
