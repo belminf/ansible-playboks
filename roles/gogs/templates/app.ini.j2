@@ -1,0 +1,50 @@
+APP_NAME = Gogs
+RUN_USER = git
+RUN_MODE = prod
+
+[database]
+DB_TYPE  = {{ gogs_db_type }}
+HOST     = {{ gogs_db_host }}
+NAME     = {{ gogs_db_name }}
+USER     = {{ gogs_db_user }}
+PASSWD   = {{ gogs_db_pass }}
+SSL_MODE = {{ gogs_db_ssl }}
+PATH     = {{ gogs_db_path }}
+
+[repository]
+ROOT = /data/git/gogs-repositories
+
+[server]
+DOMAIN           = {{ gogs_domain }}
+HTTP_PORT        = {{ gogs_http_port }}
+ROOT_URL         = {{ gogs_root_url }}
+SSH_PORT         = {{ gogs_ssh_port }}
+DISABLE_SSH      = false
+START_SSH_SERVER = false
+OFFLINE_MODE     = false
+
+[mailer]
+ENABLED = false
+
+[service]
+REGISTER_EMAIL_CONFIRM = false
+ENABLE_NOTIFY_MAIL     = false
+DISABLE_REGISTRATION   = true
+ENABLE_CAPTCHA         = true
+REQUIRE_SIGNIN_VIEW    = false
+
+[picture]
+DISABLE_GRAVATAR        = false
+ENABLE_FEDERATED_AVATAR = true
+
+[session]
+PROVIDER = file
+
+[log]
+MODE      = file
+LEVEL     = Info
+ROOT_PATH = /app/gogs/log
+
+[security]
+SECRET_KEY   = {{ gogs_secret_key }}
+INSTALL_LOCK = true

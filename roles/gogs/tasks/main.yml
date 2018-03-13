@@ -12,13 +12,16 @@
   postgresql_user:
     name: gogs
     db: gogs
-    password: '{{ gogs_db_pw }}'
+    password: '{{ gogs_db_pass }}'
   become_user: postgres
   become: yes
 
 - name: ensure Gogs data dir structure
-  file: path={{ gogs_root }} state=directory recurse=yes owner={{ ansible_user_id }}
+  file: path={{ gogs_root }}/gogs/conf state=directory recurse=yes owner={{ ansible_user_id }}
   become: yes
+
+- name: setup Gogs configuration
+  template: src=templates/app.ini.j2 dest={{ gogs_root }}/gogs/conf/app.ini mode='640'
 
 - name: run Gogs docker container
   docker_container:

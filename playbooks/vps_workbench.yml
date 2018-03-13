@@ -26,6 +26,16 @@
     -
       role: gogs
       gogs_root: /srv/gogs
-      gogs_db_pw: '{{ vault_gogs_db_pw }}'
-      gogs_ssh_port: 1022
+      gogs_db_type: postgres
+      gogs_db_host: '{{ vault_gogs_db_host }}'
+      gogs_db_name: '{{ vault_gogs_db_name }}'
+      gogs_db_user: '{{ vault_gogs_db_user }}'
+      gogs_db_pass: '{{ vault_gogs_db_pass }}'
+      gogs_db_ssl: '{{ vault_gogs_db_ssl }}'
+      gogs_db_path: '{{ vault_gogs_db_path }}'
+      gogs_domain: '{{ vault_gogs_domain }}'
+      gogs_http_port: '{{ vault_gogs_http_port }}'
+      gogs_root_url: '{{ vault_gogs_root_url }}'
+      gogs_ssh_port: '{{ vault_gogs_ssh_port }}'
+      gogs_secret_key: '{{ vault_gogs_secret_key }}'
       tags: gogs
