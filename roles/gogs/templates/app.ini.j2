@@ -24,14 +24,23 @@ START_SSH_SERVER = false
 OFFLINE_MODE     = false
 
 [mailer]
-ENABLED = false
+ENABLED = {% if gogs_mailer_host is not defined %}false{% else %}true
+HOST = {{ gogs_mailer_host }}
+FROM = {{ gogs_mailer_from }}
+{% endif %}
 
 [service]
+{% if gogs_mailer_host is not defined %}
 REGISTER_EMAIL_CONFIRM = false
 ENABLE_NOTIFY_MAIL     = false
-DISABLE_REGISTRATION   = true
+{% else %}
+REGISTER_EMAIL_CONFIRM = true
+ENABLE_NOTIFY_MAIL     = true
+{% endif %}
+DISABLE_REGISTRATION   = {% if gogs_disable_registration %}true{% else %}false{% endif %}
+
 ENABLE_CAPTCHA         = true
-REQUIRE_SIGNIN_VIEW    = false
+REQUIRE_SIGNIN_VIEW    = true
 
 [picture]
 DISABLE_GRAVATAR        = false

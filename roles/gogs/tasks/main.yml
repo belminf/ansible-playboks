@@ -22,6 +22,7 @@
 
 - name: setup Gogs configuration
   template: src=templates/app.ini.j2 dest={{ gogs_root }}/gogs/conf/app.ini mode='640'
+  notify: restart gogs
 
 - name: run Gogs docker container
   docker_container:

@@ -27,6 +27,7 @@
       role: gogs
       gogs_root: /srv/gogs
       gogs_db_type: postgres
+      gogs_disable_registration: true
       gogs_db_host: '{{ vault_gogs_db_host }}'
       gogs_db_name: '{{ vault_gogs_db_name }}'
       gogs_db_user: '{{ vault_gogs_db_user }}'
@@ -38,4 +39,6 @@
       gogs_root_url: '{{ vault_gogs_root_url }}'
       gogs_ssh_port: '{{ vault_gogs_ssh_port }}'
       gogs_secret_key: '{{ vault_gogs_secret_key }}'
+      gogs_mailer_host: '{{ vault_gogs_mailer_host }}'
+      gogs_mailer_from: '{{ vault_gogs_mailer_from }}'
       tags: gogs
