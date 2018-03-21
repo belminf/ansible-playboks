@@ -2,8 +2,10 @@
 - hosts: all
   remote_user: pi
   become: yes
-  vars:
-
+  vars_files:
+    - vault.yml
   roles:
     - plex_media_server
-    - transmission
+    -
+      role: transmission
+      transmission_ratio_limit: '{{ vault_pi_transmission_ratio_limit }}'
