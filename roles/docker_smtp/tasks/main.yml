@@ -1,0 +1,14 @@
+- name: run SMTP docker container
+  docker_container:
+    name: mailer
+    image: namshi/smtp
+    restart_policy: unless-stopped
+    ports:
+      - "25:25"
+    networks:
+      - name: frontend
+    env:
+      MAIL_NAME: "{{ smtp_mail_name }}"
+      DISABLE_IPV6: yes
+      RELAY_NETWORKS: " ; {{ smtp_relay_networks }}"
+  become: yes

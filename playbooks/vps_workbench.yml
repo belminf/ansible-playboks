@@ -11,6 +11,11 @@
     - golang
     - python
     - tmux
+    -
+      role: docker_smtp
+      smtp_mail_name: mail.belm.in
+      smtp_relay_networks: 172.16.0.0/12
+      tags: smtp
     - 
       role: website
       caddy_root: /srv/caddy
