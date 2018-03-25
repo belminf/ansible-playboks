@@ -1,7 +1,6 @@
 ---
 
 # Include OS specific setup tasks
-
 - name: distribution setup
   include_tasks: "{{ item }}"
   with_first_found:

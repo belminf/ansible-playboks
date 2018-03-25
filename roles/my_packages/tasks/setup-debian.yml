@@ -9,4 +9,4 @@
 - name: update apt cache
   apt: update_cache=yes
   become: yes
-  changed_when: false
+  changed_when: no

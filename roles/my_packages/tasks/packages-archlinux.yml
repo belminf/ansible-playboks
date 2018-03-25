@@ -1,3 +1,5 @@
+---
+
 # Only needed for Arch
 - name: install Arch packages
   package: name={{ package }} state=latest
