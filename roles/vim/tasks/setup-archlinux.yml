@@ -1,0 +1,11 @@
+---
+
+- name: install vim requirements
+  pacman: name={{ package }} state=latest
+  loop_control:
+    loop_var: package
+  become: yes
+  with_items:
+    - gvim
+    - the_silver_searcher
+    - fzy
