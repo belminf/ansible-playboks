@@ -1,26 +1,13 @@
-- name: Debian-based distro setup
-  block:
+- name: distribution setup
+  include_tasks: "{{ item }}"
+  with_first_found:
+    - "setup-{{ ansible_distribution|lower }}.yml"
+    - "setup-{{ ansible_os_family|lower }}.yml"
+    - setup-default.yml
+  tags: os-specific
 
-  - name: update apt cache
-    apt: update_cache=yes
-    become: yes
-    changed_when: no
-  
-  - name: install git
-    apt: name={{ item }} state=latest
-    become: yes
-    with_items:
-      - git
-
-  when: ansible_os_family == 'Debian'
-
-- name: RHEL-based distro setup
-  block:
-
-  - name: install git
-    yum: name={{ item }} state=latest
-    become: yes
-    with_items:
-      - git
-
-  when: ansible_os_family == 'RedHat'
+- name: install git
+  package: name={{ item }} state=latest
+  become: yes
+  with_items:
+    - git
