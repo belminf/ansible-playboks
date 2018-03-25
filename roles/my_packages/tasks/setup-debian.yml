@@ -1,0 +1,12 @@
+---
+
+# fasd only available in PPA
+- name: add fasd apt repo
+  apt_repository: repo="ppa:aacebedo/fasd"
+  become: yes
+
+# Update apt cache
+- name: update apt cache
+  apt: update_cache=yes
+  become: yes
+  changed_when: false

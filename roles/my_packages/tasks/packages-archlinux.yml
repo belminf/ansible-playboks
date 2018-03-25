@@ -1,0 +1,9 @@
+# Only needed for Arch
+- name: install Arch packages
+  package: name={{ package }} state=latest
+  with_items:
+    - inetutils
+    - coreutils
+  loop_control:
+    loop_var: package
+  become: yes

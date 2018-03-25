@@ -1,18 +1,27 @@
 ---
-- name: install packages
-  apt: name={{ item }} state=latest
+
+# Include OS specific setup tasks
+
+- name: distribution setup
+  include_tasks: "{{ item }}"
+  with_first_found:
+    - "setup-{{ ansible_distribution|lower }}.yml"
+    - "setup-{{ ansible_os_family|lower }}.yml"
+    - setup-default.yml
+  tags: os-specific
+
+# Install shared packages
+- name: install shared packages
+  package: name={{ item }} state=latest
   become: yes
   with_items:
     - tmux
     - lftp
     - tree
     - nmap
-    - telnet
     - strace
     - mlocate
     - httpie
-    - netcat-openbsd
-    - dnsutils
     - pwgen
     - gnupg
     - pv
@@ -20,11 +29,13 @@
     - unzip
     - jq
     - whois
+    - fasd
+    - ncdu
 
-- name: add fasd apt repo
-  apt_repository: repo="ppa:aacebedo/fasd"
-  become: yes
-
-- name: install fasd package
-  apt: name=fasd state=latest update_cache=yes
-  become: yes
+- name: distribution specific packages
+  include_tasks: "{{ item }}"
+  with_first_found:
+    - "packages-{{ ansible_distribution|lower }}.yml"
+    - "packages-{{ ansible_os_family|lower }}.yml"
+    - packages-default.yml
+  tags: os-specific

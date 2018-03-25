@@ -1,0 +1,11 @@
+# Only needed for Debian
+- name: install Debian packages
+  package: name={{ package }} state=latest
+  with_items:
+    - telnet
+    - netcat-openbsd
+    - dnsutils
+    - realpath
+  loop_control:
+      loop_var: package
+  become: yes
