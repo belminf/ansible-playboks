@@ -1,0 +1,9 @@
+---
+
+- name: distribution specific package cache setup
+  include_tasks: "{{ item }}"
+  with_first_found:
+    - "setup-{{ ansible_distribution|lower }}.yml"
+    - "setup-{{ ansible_os_family|lower }}.yml"
+    - setup-default.yml
+  tags: packages
