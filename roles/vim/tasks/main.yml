@@ -6,7 +6,6 @@
     - "setup-{{ ansible_distribution|lower }}.yml"
     - "setup-{{ ansible_os_family|lower }}.yml"
     - setup-default.yml
-  tags: os-specific
 
 - name: my vim config
   git: repo=ssh://git@github.com/belminf/dotvim.git dest=~/.vim accept_hostkey=yes update=yes recursive=yes

@@ -6,7 +6,6 @@
     - "setup-{{ ansible_distribution|lower }}.yml"
     - "setup-{{ ansible_os_family|lower }}.yml"
     - setup-default.yml
-  tags: os-specific
 
 - name: install git
   package: name={{ item }} state=latest

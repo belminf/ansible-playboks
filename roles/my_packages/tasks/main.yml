@@ -7,7 +7,6 @@
     - "setup-{{ ansible_distribution|lower }}.yml"
     - "setup-{{ ansible_os_family|lower }}.yml"
     - setup-default.yml
-  tags: os-specific
 
 # Install shared packages
 - name: install shared packages
@@ -35,4 +34,3 @@
     - "packages-{{ ansible_distribution|lower }}.yml"
     - "packages-{{ ansible_os_family|lower }}.yml"
     - packages-default.yml
-  tags: os-specific
