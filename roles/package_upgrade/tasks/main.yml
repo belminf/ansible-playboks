@@ -1,0 +1,8 @@
+---
+
+- name: distribution specific package upgrade
+  include_tasks: "{{ item }}"
+  with_first_found:
+    - "upgrade-{{ ansible_distribution|lower }}.yml"
+    - "upgrade-{{ ansible_os_family|lower }}.yml"
+    - upgrade-default.yml
