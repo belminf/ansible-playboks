@@ -1,0 +1,9 @@
+---
+
+- name: update pacman cache
+  pacman: update_cache=yes
+  become: yes
+
+- name: update apt cache
+  apt: update_cache=yes
+  become: yes

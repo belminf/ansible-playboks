@@ -1,7 +1,7 @@
 ---
 
 - name: HTTPS package
-  apt: name=apt-transport-https state=latest update_cache=yes
+  apt: name=apt-transport-https state=latest
   become: yes
 
 - name: apt key
@@ -11,9 +11,10 @@
 - name: apt repo
   apt_repository: repo="deb https://dev2day.de/pms/ jessie main"
   become: yes
+  handler: update apt cache
 
 - name: package
-  apt: name=plexmediaserver state=latest update_cache=yes
+  apt: name=plexmediaserver state=latest
   become: yes
 
 - name: group membership
