@@ -9,6 +9,7 @@
 
 - name: caddy configuration file
   template: src=templates/Caddyfile.j2 dest={{ caddy_root }}/Caddyfile
+  notify: restart caddy
 
 - name: modify UFW to allow port
   ufw: rule=allow port=443,80 proto=tcp
