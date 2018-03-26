@@ -2,15 +2,24 @@
 
 - name: HTTPS package
   apt: name=apt-transport-https state=latest update_cache=yes
+  become: yes
 
 - name: apt key
   apt_key: url=https://dev2day.de/pms/dev2day-pms.gpg.key
+  become: yes
 
 - name: apt repo
   apt_repository: repo="deb https://dev2day.de/pms/ jessie main"
+  become: yes
 
 - name: package
   apt: name=plexmediaserver state=latest update_cache=yes
+  become: yes
 
 - name: group membership
   user: name=plex groups=shared_media append=yes
+  become: yes
+
+- name: service
+  service: name=plexmediaserver state=started enabled=yes
+  become: yes
