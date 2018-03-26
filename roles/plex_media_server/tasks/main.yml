@@ -11,7 +11,7 @@
 - name: apt repo
   apt_repository: repo="deb https://dev2day.de/pms/ jessie main"
   become: yes
-  handler: update apt cache
+  notify: update apt cache
 
 - name: package
   apt: name=plexmediaserver state=latest
