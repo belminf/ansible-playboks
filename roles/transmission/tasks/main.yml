@@ -1,7 +1,7 @@
 ---
 
 - name: packages
-  apt: name={{ item }} state=latest update_cache=yes
+  package: name={{ item }} state=latest
   with_items:
     - transmission-cli
     - transmission-daemon
