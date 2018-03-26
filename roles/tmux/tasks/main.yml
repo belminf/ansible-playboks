@@ -1,10 +1,7 @@
-- name: update apt cache
-  apt: update_cache=yes
-  become: yes
-  changed_when: no
+---
 
 - name: install packages
-  apt: name={{ item }} state=latest
+  package: name={{ item }} state=latest
   become: yes
   with_items:
     - tmux
