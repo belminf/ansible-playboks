@@ -1,3 +1,5 @@
+---
+
 - name: create DB
   vars:
     ansible_ssh_pipelining: true

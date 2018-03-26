@@ -1,3 +1,5 @@
+---
+
 - name: install golang
   apt: name={{ item }} state=latest
   become: yes

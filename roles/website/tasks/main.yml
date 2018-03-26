@@ -1,3 +1,5 @@
+---
+
 - name: ensure Caddy data dir structure
   file: path={{ caddy_root }}/sites state=directory recurse=yes owner={{ ansible_user_id }}
   become: yes

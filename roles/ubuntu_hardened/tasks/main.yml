@@ -1,4 +1,5 @@
 ---
+
 - name: sudoers for authkey-only auth
   lineinfile: "dest=/etc/sudoers regexp='^%sudo' line='%sudo ALL=(ALL:ALL) NOPASSWD: ALL'"
 

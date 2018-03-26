@@ -1,4 +1,5 @@
 ---
+
 - name: bootstrap instances for ansible
   hosts: all
   remote_user: ubuntu

@@ -1,4 +1,5 @@
 ---
+
 - name: restart gogs
   action: docker_container name=gogs restart=yes
   become: yes
