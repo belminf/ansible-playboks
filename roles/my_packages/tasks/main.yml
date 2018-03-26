@@ -28,7 +28,6 @@
     - unzip
     - jq
     - whois
-    - fasd
     - ncdu
 
 - name: distribution specific packages

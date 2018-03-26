@@ -1,6 +1,0 @@
----
-
-# fasd only available in PPA
-- name: add fasd apt repo
-  apt_repository: repo="ppa:aacebedo/fasd"
-  become: yes
