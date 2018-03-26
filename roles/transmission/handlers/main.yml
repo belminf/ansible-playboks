@@ -1,4 +1,5 @@
 ---
 
-- name: reload configuration
+- name: reload transmission config
   service: name=transmission-daemon state=reloaded
+  become: yes
