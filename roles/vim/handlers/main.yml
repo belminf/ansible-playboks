@@ -1,0 +1,4 @@
+---
+
+- name: install vim plugins
+  command: vim +PlugInstall +qall

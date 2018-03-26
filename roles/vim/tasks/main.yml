@@ -9,11 +9,7 @@
 
 - name: my vim config
   git: repo=ssh://git@github.com/belminf/dotvim.git dest=~/.vim accept_hostkey=yes update=yes recursive=yes
-  register: vim_git
+  notify: install vim plugins
 
 - name: link new vim
   file: src=~/.vim/rc.vim dest=~/.vimrc state=link
-
-- name: install vim plugins
-  command: vim +PlugInstall +qall
-  when: vim_git.changed
