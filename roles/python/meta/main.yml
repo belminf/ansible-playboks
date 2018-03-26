@@ -3,7 +3,3 @@
 dependencies:
   -
     role: package_cache
-  -
-    role: vim
-  -
-    role: bash
