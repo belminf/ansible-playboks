@@ -7,7 +7,7 @@
     - python-pip
 
 - name: dev packages
-  package: name={{ item }} state=latest
+  pip: name={{ item }} state=latest
   become: yes
   with_items:
     - pip
