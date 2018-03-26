@@ -1,13 +1,13 @@
 ---
 
 - name: pip
-  apt: name={{ item }} state=latest
+  package: name={{ item }} state=latest
   become: yes
   with_items:
     - python-pip
 
 - name: dev packages
-  pip: name={{ item }} state=latest
+  package: name={{ item }} state=latest
   become: yes
   with_items:
     - pip

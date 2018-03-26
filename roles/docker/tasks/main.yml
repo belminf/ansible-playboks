@@ -1,7 +1,7 @@
 ---
 
 - name: install pip
-  apt: name=python-pip state=latest
+  package: name=python-pip state=latest
   become: yes
 
 - name: install docker-py

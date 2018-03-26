@@ -1,7 +1,7 @@
 ---
 
 - name: install golang
-  apt: name={{ item }} state=latest
+  package: name={{ item }} state=latest
   become: yes
   with_items:
     - golang
