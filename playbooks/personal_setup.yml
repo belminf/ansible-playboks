@@ -1,0 +1,41 @@
+---
+- hosts: all
+  roles:
+    - 
+      role: my_packages
+      tags: packages
+    - 
+      role: git
+      tags: git
+    -
+      role: vim
+      tags: vim
+    - 
+      role: bash
+      tags: bash
+
+- hosts: media_server
+  remote_user: pi
+  become: yes
+  roles:
+    - 
+      role: plex_media_server
+      tags: plex
+    -
+      role: transmission
+      tags: transmission
+
+- hosts: vps
+  roles:
+    -
+      role: docker_smtp
+      tags: smtp
+    - 
+      role: website
+      tags: website
+    -
+      role: postgresql
+      tags: db
+    -
+      role: gogs
+      tags: gogs

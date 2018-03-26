@@ -9,22 +9,14 @@ Collection of personal Ansible playbooks.
     $ pip install -r requirements.txt
 
 # Playbooks
-* `linux.yml` - My minimal Linux config
-* `raspberry-pi.yml` - Raspberry Pi I use as a media box
+* `personal_setup.yml` - Setup for my personal boxes
 * `ubuntu_bootstrap.yml` - Bootstrapping Ubuntu for Ansible
-* `vps_workbench.yml` - My remote workbench
 
 ## Example playbook runs
-### Local
-Apply a role:
+Only apply to one instance:
 
-    $ ansible-playbook -i localhost, -c local playbooks/roles/vim.yml
+    $ ansible-playbook playbooks/personal_setup.yaml -l pi
 
-### Remote
-Apply a playbook
+Only apply `vim` updates:
 
-    $ ansible-playbook -i 192.168.3.200, playbooks/linux.yml
-
-### Raspberry Pi
-
-    $ ansible-playbook -i raspberrypi, --extra-vars 'transmission_ratio_limit=7.5' playbooks/raspberry-pi.yaml 
+    $ ansible-playbook playbooks/personal_setup.yml -t vim

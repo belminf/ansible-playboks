@@ -1,6 +1,0 @@
-- hosts: all
-  roles:
-    - my_packages
-    - git
-    - vim
-    - bash
