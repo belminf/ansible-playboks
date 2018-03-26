@@ -15,7 +15,17 @@
       role: bash
       tags: bash
 
-- hosts: media_server
+- hosts: workbenches
+  roles:
+    -
+      role: tmux
+      tags: tmux
+    -
+      role: python
+      tags: python
+
+
+- hosts: media_servers
   remote_user: pi
   become: yes
   roles:
