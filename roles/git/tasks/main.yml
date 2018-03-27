@@ -12,3 +12,6 @@
   become: yes
   with_items:
     - git
+
+- name: configure git
+  template: src=templates/gitconfig.j2 dest=~/.gitconfig
