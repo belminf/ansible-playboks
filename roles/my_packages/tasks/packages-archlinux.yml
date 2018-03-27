@@ -6,6 +6,7 @@
   with_items:
     - inetutils
     - coreutils
+    - fzf
   loop_control:
     loop_var: package
   become: yes

@@ -11,3 +11,7 @@
   loop_control:
       loop_var: package
   become: yes
+
+# Git clone of fzf
+- name: install fzf via git
+  git: repo=https://github.com/junegunn/fzf.git dest=~/.fzf force=yes update=yes clone=yes
