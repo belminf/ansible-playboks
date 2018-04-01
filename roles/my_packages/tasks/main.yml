@@ -27,6 +27,7 @@
     - jq
     - whois
     - ncdu
+    - lsof
 
 - name: distribution specific packages
   include_tasks: "{{ item }}"
