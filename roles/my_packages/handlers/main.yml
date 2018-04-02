@@ -1,0 +1,7 @@
+---
+
+- name: install fzf binary
+  command: ./install --bin
+  args:
+    chdir: ~/.fzf
+   
