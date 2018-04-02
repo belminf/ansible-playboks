@@ -17,5 +17,7 @@
     - { name: 'port-forwarding-enabled', value: "{{ transmission_port_fwd }}" }
     - { name: 'peer-port-random-on-start', value: "{{ transmission_random_port }}" }
     - { name: 'ratio-limit', value: "{{ '%.4f'|format(transmission_ratio_limit|float) }}" }
-    - { name: 'ratio-limit-enabled', value: "{{ transmission_ratio_enabled }}" }
+    - { name: 'ratio-limit-enabled', value: "{{ transmission_ratio_limit_enabled }}" }
+    - { name: 'idle-seeding-limit', value: "{{ transmission_idle_seeding_limit }}" }
+    - { name: 'idle-seeding-limit-enabled', value: "{{ transmission_idle_seeding_limit_enabled }}" }
   notify: reload transmission config

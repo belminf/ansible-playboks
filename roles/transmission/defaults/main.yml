@@ -4,4 +4,6 @@ transmission_whitelist: 127.0.0.1,192.168.*.*
 transmission_port_fwd: 'true'
 transmission_random_port: 'true'
 transmission_ratio_limit: 2.5
-transmission_ratio_enabled: 'true'
+transmission_ratio_limit_enabled: 'true'
+transmission_idle_seeding_limit: 30
+transmission_idle_seeding_limit_enabled: 'true'
