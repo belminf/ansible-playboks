@@ -28,6 +28,8 @@
     - whois
     - ncdu
     - lsof
+    - iotop
+    - sysstat
 
 - name: distribution specific packages
   include_tasks: "{{ item }}"
