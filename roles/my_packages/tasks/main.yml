@@ -30,6 +30,7 @@
     - lsof
     - iotop
     - sysstat
+    - bash-completion
 
 - name: distribution specific packages
   include_tasks: "{{ item }}"
