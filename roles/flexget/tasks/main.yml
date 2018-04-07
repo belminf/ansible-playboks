@@ -1,0 +1,17 @@
+---
+
+- name: install
+  pip: name={{ item }} state=latest
+  with_items:
+    - flexget
+    - transmissionrpc
+  become: yes
+  changed_when: no
+
+- name: ensure dir 
+  file: path=~/.flexget state=directory
+
+- name: create configuration
+  copy:
+    content: "{{ flexget_config }}"
+    dest: ~/.flexget/flexget.conf
