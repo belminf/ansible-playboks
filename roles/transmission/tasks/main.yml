@@ -23,3 +23,16 @@
     - { name: 'download-dir', value: "\"{{ transmission_download_dir }}\"" }
     - { name: 'incomplete-dir', value: "\"{{ transmission_incomplete_dir }}\"" }
   notify: reload transmission config
+
+- name: systemd config dir
+  file: path=/etc/systemd/transmission.service state=directory recurse=yes
+  become: yes
+
+- name: systemd config file
+  copy:
+    content: |
+      [Unit]
+      Requires=network.target
+    dest: /etc/systemd/transmission.service/fixdep.conf
+  become: yes
+  notify: reload transmission config
