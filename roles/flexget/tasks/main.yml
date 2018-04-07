@@ -14,4 +14,4 @@
 - name: create configuration
   copy:
     content: "{{ flexget_config }}"
-    dest: ~/.flexget/flexget.conf
+    dest: ~/.flexget/config.yml
