@@ -28,3 +28,10 @@
 - name: plex-delete script
   pip: name=git+https://github.com/belminf/plex-delete.git state=latest
   become: yes
+
+- name: plex-delete cronjob
+  cron:
+    name: plex-delete
+    minute: "*/{{ plex_delete_interval }}"
+    job: plex-delete -t {{ plex_delete_token }} {{ plex_delete_options }} >> ~/cron-plex-delete.log 2>&1
+
