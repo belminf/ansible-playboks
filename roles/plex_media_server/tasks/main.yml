@@ -24,3 +24,7 @@
 - name: service
   service: name=plexmediaserver state=started enabled=yes
   become: yes
+
+- name: plex-delete script
+  pip: name=git+https://github.com/belminf/plex-delete.git state=latest
+  become: yes
