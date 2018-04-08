@@ -18,7 +18,7 @@
   become: yes
 
 - name: group membership
-  user: name=plex groups=shared_media append=yes
+  user: name=plex groups={{ media_group }} append=yes
   become: yes
 
 - name: service

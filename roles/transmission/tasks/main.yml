@@ -7,6 +7,10 @@
     - transmission-daemon
     - transmission-common
 
+- name: group membership
+  user: name=debian-transmission groups={{ media_group }} append=yes
+  become: yes
+
 - name: configuration
   lineinfile:
     path: /etc/transmission-daemon/settings.json
