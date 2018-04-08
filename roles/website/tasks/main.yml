@@ -1,6 +1,6 @@
 ---
 
-- name: ensure Caddy data dir structure
+- name: ensure caddy dir structure
   file: path={{ caddy_root }}/sites state=directory recurse=yes owner={{ ansible_user_id }}
   become: yes
 
@@ -11,11 +11,11 @@
   template: src=templates/Caddyfile.j2 dest={{ caddy_root }}/Caddyfile
   notify: restart caddy
 
-- name: modify UFW to allow port
+- name: firewall rules
   ufw: rule=allow port=443,80 proto=tcp
   become: yes
 
-- name: run Caddy docker container
+- name: run caddy container
   docker_container:
     name: caddy
     image: zzrot/alpine-caddy

@@ -1,6 +1,6 @@
 ---
 
-- name: distribution specific package cache setup
+- name: distribution specific setup
   include_tasks: "{{ item }}"
   with_first_found:
     - "setup-{{ ansible_distribution|lower }}.yml"

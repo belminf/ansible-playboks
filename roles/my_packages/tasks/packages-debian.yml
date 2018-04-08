@@ -1,7 +1,7 @@
 ---
 
 # Only needed for Debian
-- name: install Debian packages
+- name: install debian packages
   package: name={{ package }} state=latest
   with_items:
     - telnet

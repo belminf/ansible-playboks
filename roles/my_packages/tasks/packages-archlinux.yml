@@ -1,7 +1,7 @@
 ---
 
 # Only needed for Arch
-- name: install Arch packages
+- name: install arch packages
   package: name={{ package }} state=latest
   with_items:
     - inetutils

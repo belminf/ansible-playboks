@@ -1,6 +1,6 @@
 ---
 
-- name: run SMTP docker container
+- name: run container
   docker_container:
     name: mailer
     image: namshi/smtp
