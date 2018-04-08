@@ -26,6 +26,7 @@
     - { name: 'idle-seeding-limit-enabled', value: "{{ transmission_idle_seeding_limit_enabled }}" }
     - { name: 'download-dir', value: "\"{{ transmission_download_dir }}\"" }
     - { name: 'incomplete-dir', value: "\"{{ transmission_incomplete_dir }}\"" }
+  become: yes
   notify: reload transmission config
 
 - name: systemd config dir
