@@ -34,4 +34,3 @@
     name: plex-delete
     minute: "*/{{ plex_delete_interval }}"
     job: plex-delete -t {{ plex_delete_token }} {{ plex_delete_options }} >> ~/cron-plex-delete.log 2>&1
-
