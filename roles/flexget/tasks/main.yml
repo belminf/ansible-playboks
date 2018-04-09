@@ -20,4 +20,4 @@
   cron:
     name: flexget
     minute: "*/{{ flexget_interval }}"
-    job: flexget --cron execute >> ~/cron-flexget.log 2>&1
+    job: bash -lc "flexget --cron execute >> ~/cron-flexget.log 2>&1"
