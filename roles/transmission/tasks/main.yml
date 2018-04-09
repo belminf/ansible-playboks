@@ -20,12 +20,15 @@
     - { name: 'rpc-whitelist', value: "\"{{ transmission_whitelist }}\"" }
     - { name: 'port-forwarding-enabled', value: "{{ transmission_port_fwd }}" }
     - { name: 'peer-port-random-on-start', value: "{{ transmission_random_port }}" }
+    - { name: 'umask', value: "{{ transmission_umask }}" }
     - { name: 'ratio-limit', value: "{{ '%.4f'|format(transmission_ratio_limit|float) }}" }
     - { name: 'ratio-limit-enabled', value: "{{ transmission_ratio_limit_enabled }}" }
     - { name: 'idle-seeding-limit', value: "{{ transmission_idle_seeding_limit }}" }
     - { name: 'idle-seeding-limit-enabled', value: "{{ transmission_idle_seeding_limit_enabled }}" }
     - { name: 'download-dir', value: "\"{{ transmission_download_dir }}\"" }
+    - { name: 'download-queue-size', value: "{{ transmission_download_queue_size }}" }
     - { name: 'incomplete-dir', value: "\"{{ transmission_incomplete_dir }}\"" }
+    - { name: 'incomplete-dir-enabled', value: "{{ transmission_incomplete_dir_enabled }}" }
   become: yes
   notify: reload transmission config
 
