@@ -1,0 +1,13 @@
+---
+
+- name: sysctl settings
+  sysctl:
+    name: '{{ item.name }}'
+    value: '{{ item.value }}'
+    sysctl_file: /etc/sysctl.d/raspberry-pi.conf
+  with_items:
+    - { name: 'vm.swappiness', value: 15 }
+    - { name: 'vm.vfs_cache_pressure', value: 50 }
+    - { name: 'vm.dirty_background_ratio', value: 15 }
+    - { name: 'vm.dirty_ratio', value: 20 }
+  become: yes

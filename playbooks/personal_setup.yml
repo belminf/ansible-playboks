@@ -26,7 +26,6 @@
 
 
 - hosts: media_servers
-  remote_user: pi
   roles:
     - 
       role: plex_media_server
@@ -52,3 +51,9 @@
     -
       role: gogs
       tags: gogs
+
+- hosts: raspberry_pi
+  roles:
+    -
+      role: raspberry_pi
+      tags: raspberry_pi
