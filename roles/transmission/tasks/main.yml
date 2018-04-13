@@ -29,6 +29,10 @@
     - { name: 'download-queue-size', value: "{{ transmission_download_queue_size }}" }
     - { name: 'incomplete-dir', value: "\"{{ transmission_incomplete_dir }}\"" }
     - { name: 'incomplete-dir-enabled', value: "{{ transmission_incomplete_dir_enabled }}" }
+    - { name: 'download-limit', value: "{{ transmission_download_limit }}" }
+    - { name: 'download-limit-enabled', value: "{{ transmission_download_limit_enabled }}" }
+    - { name: 'upload-limit', value: "{{ transmission_upload_limit }}" }
+    - { name: 'upload-limit-enabled', value: "{{ transmission_upload_limit_enabled }}" }
   become: yes
   notify: reload transmission config
 
