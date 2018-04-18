@@ -36,6 +36,17 @@
   become: yes
   notify: reload transmission config
 
+- name: sysctl settings
+  sysctl:
+    name: '{{ item.name }}'
+    value: '{{ item.value }}'
+    sysctl_file: /etc/sysctl.d/transmission.conf
+  with_items:
+    - { name: 'net.core.wmem_max', value: 1048576 }
+    - { name: 'net.core.rmem_max', value: 4194304 }
+  become: yes
+  notify: reload transmission config
+
 - name: systemd config dir
   file: path=/etc/systemd/transmission.service state=directory recurse=yes
   become: yes
@@ -44,7 +55,8 @@
   copy:
     content: |
       [Unit]
-      Requires=network.target
-    dest: /etc/systemd/transmission.service/fixdep.conf
+      Requires=network-online.target
+      Wants=network-online.target
+    dest: /etc/systemd/transmission.service/network-online.conf
   become: yes
   notify: reload transmission config
