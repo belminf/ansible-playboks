@@ -1,0 +1,13 @@
+---
+
+# GatewayPorts clientspecified
+
+- name: configuration
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^{{ item.name }} '
+    line: '{{ item.name }} {{ item.value }}'
+  with_items:
+    - { name: 'GatewayPorts', value: 'clientspecified' }
+  become: yes
+  notify: reload sshd config

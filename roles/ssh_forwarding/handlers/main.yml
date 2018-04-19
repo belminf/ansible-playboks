@@ -1,0 +1,5 @@
+---
+
+- name: reload sshd config
+  service: name=sshd state=reloaded
+  become: yes
