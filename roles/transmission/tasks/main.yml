@@ -47,16 +47,18 @@
   become: yes
   notify: reload transmission config
 
-- name: systemd config dir
-  file: path=/etc/systemd/transmission.service state=directory recurse=yes
-  become: yes
-
-- name: systemd config file
+- name: systemd config
   copy:
-    content: |
-      [Unit]
-      Requires=network-online.target
-      Wants=network-online.target
-    dest: /etc/systemd/transmission.service/network-online.conf
+    src: files/transmission-daemon.service
+    dest: /lib/systemd/system/transmission-daemon.service
+    owner: root
+    group: root
+    mode: 0644
   become: yes
-  notify: reload transmission config
+  notify: reload systemd
+
+- name: systemd network-wait depdencies
+  systemd: name={{ item }} enabled=yes
+  with_items:
+    - systemd-networkd.service
+    - systemd-networkd-wait-online.service
