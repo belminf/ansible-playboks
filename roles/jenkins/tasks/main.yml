@@ -7,10 +7,6 @@
   file: path={{ jenkins_root }}/secrets state=directory recurse=yes owner=1000 group=1000
   become: yes
 
-- name: initial password file
-  copy: dest={{ jenkins_root }}/secrets/initialAdminPassword content={{ jenkins_initial_password }} owner=1000 group=1000
-  become: yes
-
 - name: run container
   docker_container:
     name: jenkins-master
