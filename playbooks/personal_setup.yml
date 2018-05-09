@@ -54,6 +54,9 @@
     -
       role: ssh_forwarding
       tags: ssh_forwarding
+    -
+      role: jenkins
+      tags: jenkins
 
 - hosts: raspberry_pi
   roles:
