@@ -11,7 +11,10 @@
 {% for this_proxy in proxies %}
 
 {{ this_proxy['from'] }} {
-    proxy / {{ this_proxy['to'] }}
+  proxy / {{ this_proxy['to'] }}{% if this_proxy['transparent'] %} {
+    transparent
+  }{% endif %}
+
 }
 {% endfor %}
 {% endif %}
