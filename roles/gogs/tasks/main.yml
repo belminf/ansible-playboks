@@ -18,15 +18,15 @@
   become_user: postgres
   become: yes
 
-- name: ensure gogs dir structure
+- name: create dir structure
   file: path={{ gogs_root }}/gogs/conf state=directory recurse=yes owner={{ ansible_user_id }}
   become: yes
 
-- name: setup Gogs configuration
+- name: create configuration
   template: src=templates/app.ini.j2 dest={{ gogs_root }}/gogs/conf/app.ini mode='640'
   notify: restart gogs
 
-- name: run gogs container
+- name: run container
   docker_container:
     name: gogs
     image: gogs/gogs
