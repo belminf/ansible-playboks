@@ -57,8 +57,8 @@
   become: yes
   notify: reload systemd
 
-- name: systemd network-wait depdencies
-  systemd: name={{ item }} enabled=yes
-  with_items:
-    - systemd-networkd.service
-    - systemd-networkd-wait-online.service
+- name: transmission network check job
+  cron:
+    name: transmission-net-check
+    minute: "*/{{ transmission_net_check_interval }}"
+    job: "bash -lc \"sudo systemctl status transmission-daemon | grep 'sendto: Network is unreachable' 2> /dev/null && sudo systemctl restart transmission-daemon\""
