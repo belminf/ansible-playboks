@@ -8,8 +8,8 @@
 {% endif %}
 {% if caddy_sites is defined %}
 {% for this_site in caddy_sites %}
-{{ this_site }} {
-    root /var/www/html/{{ this_site }}
+{{ this_site['from'] }} {
+    root /var/www/html/{{ this_site['root'] }}
 }
 
 {% endfor %}
