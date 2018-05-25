@@ -43,8 +43,11 @@
       role: docker_smtp
       tags: smtp
     - 
-      role: website
-      tags: website
+      role: caddy
+      tags: caddy
+    - 
+      role: managed_sites
+      tags: www
     -
       role: postgresql
       tags: db
