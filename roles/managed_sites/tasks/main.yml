@@ -1,0 +1,4 @@
+---
+
+- name: synchronize content
+  synchronize: src=files/ dest={{ caddy_root }}/html/managed/ recursive=yes delete=yes

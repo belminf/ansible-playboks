@@ -1,0 +1,30 @@
+---
+
+- name: create sites dir
+  file: path={{ caddy_root }}/html state=directory recurse=yes owner={{ ansible_user_id }}
+  become: yes
+
+- name: generate configuration file
+  template: src=templates/Caddyfile.j2 dest={{ caddy_root }}/Caddyfile
+  notify: restart caddy
+
+- name: firewall rules
+  ufw: rule=allow port=443,80 proto=tcp
+  become: yes
+
+- name: merge volume lists
+  set_fact:
+    caddy_all_volumes: "{{ caddy_default_volumes }} + {{ caddy_extra_volumes }}"
+  
+- name: run container
+  docker_container:
+    name: caddy
+    image: zzrot/alpine-caddy
+    restart_policy: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes: "{{ caddy_all_volumes }}"
+    networks:
+      - name: frontend
+  become: yes

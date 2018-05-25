@@ -1,0 +1,37 @@
+{% if caddy_managed_sites is defined %}
+{% for this_site in caddy_managed_sites %}
+{{ this_site }} {
+    root /var/www/html/managed/{{ this_site }}
+}
+
+{% endfor %}
+{% endif %}
+{% if caddy_sites is defined %}
+{% for this_site in caddy_sites %}
+{{ this_site }} {
+    root /var/www/html/{{ this_site }}
+}
+
+{% endfor %}
+{% endif %}
+{% if caddy_redirects is defined %}
+{% for this_redirect in caddy_redirects %}
+{{ this_redirect['from'] }} {
+    redir https://{{ this_redirect['to']}}
+}
+
+{% endfor %}
+{% endif %}
+{% if caddy_proxies is defined %}
+{% for this_proxy in caddy_proxies %}
+{{ this_proxy['from'] }} {
+  proxy / {{ this_proxy['to'] }}{% if this_proxy['transparent'] %} {
+    transparent
+  }{% endif %}
+
+}
+
+{% endfor %}
+{% endif %}
+
+{{ caddy_extraconfig }}

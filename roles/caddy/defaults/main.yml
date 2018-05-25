@@ -1,0 +1,7 @@
+---
+
+caddy_extraconfig: ""
+caddy_default_volumes:
+  - "{{ caddy_root }}/html:/var/www/html"
+  - "{{ caddy_root }}/Caddyfile:/etc/Caddyfile:ro"
+caddy_extra_volumes: []
