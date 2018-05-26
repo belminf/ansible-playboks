@@ -31,6 +31,7 @@
     - iotop
     - sysstat
     - bash-completion
+    - htop
 
 - name: distribution specific packages
   include_tasks: "{{ item }}"
