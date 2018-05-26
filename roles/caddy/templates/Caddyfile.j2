@@ -1,7 +1,7 @@
 {% if caddy_managed_sites is defined %}
 {% for this_site in caddy_managed_sites %}
 {{ this_site }} {
-    root /var/www/html/managed/{{ this_site }}
+  root /var/www/html/managed/{{ this_site }}
 }
 
 {% endfor %}
@@ -9,7 +9,10 @@
 {% if caddy_sites is defined %}
 {% for this_site in caddy_sites %}
 {{ this_site['from'] }} {
-    root /var/www/html/{{ this_site['root'] }}
+  root /var/www/html/{{ this_site['root'] }}
+  {% if this_site.extras is defined %}
+  {{ this_site.extras|indent(2, False) }}
+  {%- endif -%}
 }
 
 {% endfor %}
@@ -17,7 +20,7 @@
 {% if caddy_redirects is defined %}
 {% for this_redirect in caddy_redirects %}
 {{ this_redirect['from'] }} {
-    redir https://{{ this_redirect['to']}}
+  redir https://{{ this_redirect['to']}}
 }
 
 {% endfor %}
@@ -25,13 +28,18 @@
 {% if caddy_proxies is defined %}
 {% for this_proxy in caddy_proxies %}
 {{ this_proxy['from'] }} {
-  proxy / {{ this_proxy['to'] }}{% if this_proxy['transparent'] %} {
+  proxy / {{ this_proxy['to'] }}
+  {%- if this_proxy['transparent'] %} {
     transparent
-  }{% endif %}
+  }
+{% else %}
 
+{% endif %}
+  {%- if this_proxy.extras is defined %}
+  {{ this_proxy.extras|indent(2, False) }}
+  {%- endif -%}
 }
 
 {% endfor %}
 {% endif %}
-
 {{ caddy_extraconfig }}
