@@ -11,7 +11,7 @@
 {{ this_site['from'] }} {
   root /var/www/html/{{ this_site['root'] }}
   {% if this_site.extras is defined %}
-  {{ this_site.extras|indent(2, False) }}
+{{ this_site.extras|indent(2, False) }}
   {%- endif -%}
 }
 
