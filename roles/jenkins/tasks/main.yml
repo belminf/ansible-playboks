@@ -1,19 +1,27 @@
 ---
 - name: create user
-  user: name=jenkins
+  user: name=jenkins groups=docker
   become: yes
 
 - name: ensure dir structure
   file: path={{ jenkins_root }}/secrets state=directory recurse=yes owner=1000 group=1000
   become: yes
 
+- name: get docker gid
+  getent: database=group key=docker
+
 - name: run container
   docker_container:
     name: jenkins-master
-    image: jenkins/jenkins:lts-alpine
+    image: jenkins/jenkins:lts
+    groups:
+      - "{{ getent_group['docker'][1] }}"
+    user: jenkins
     restart_policy: unless-stopped
     volumes:
       - "{{ jenkins_root }}:/var/jenkins_home"
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - name: frontend
+      - name: build
   become: yes
