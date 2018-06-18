@@ -1,0 +1,68 @@
+---
+
+- name: create DB
+  vars:
+    ansible_ssh_pipelining: true
+  postgresql_db:
+    name: gitea
+  become_user: postgres
+  become: yes
+
+- name: create DB user
+  vars:
+    ansible_ssh_pipelining: true
+  postgresql_user:
+    name: gitea
+    db: gitea
+    password: '{{ gitea_db_pass }}'
+  become_user: postgres
+  become: yes
+
+- name: create dir structure
+  file: path={{ gitea_root }}/gitea/conf state=directory recurse=yes owner={{ ansible_user_id }}
+  become: yes
+
+- name: create configuration
+  ini_file:
+    path: '{{ gitea_root }}/gitea/conf/app.ini'
+    mode: 0640
+    section: '{{ item.section }}'
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+  loop:
+    - { section: '', option: 'APP_NAME', value: '{{ gitea_app_name }}' }
+    - { section: '', option: 'RUN_MODE', value: '{{ gitea_mode }}' }
+    - { section: 'server', option: 'SSH_DOMAIN', value: '{{ gitea_domain }}' }
+    - { section: 'server', option: 'SSH_PORT', value: '{{ gitea_ssh_port }}' }
+    - { section: 'server', option: 'ROOT_URL', value: '{{ gitea_root_url }}' }
+    - { section: 'database', option: 'DB_TYPE', value: postgres }
+    - { section: 'database', option: 'HOST', value: '{{ gitea_db_host }}' }
+    - { section: 'database', option: 'NAME', value: gitea }
+    - { section: 'database', option: 'USER', value: gitea }
+    - { section: 'database', option: 'PASSWD', value: '{{ gitea_db_pass }}' }
+    - { section: 'security', option: 'INSTALL_LOCK', value: 'true' }
+    - { section: 'security', option: 'SECRET_KEY', value: '{{ gitea_secret_key }}' }
+    - { section: 'service', option: 'DISABLE_REGISTRATION', value: '{{ gitea_disable_reg }}' }
+    - { section: 'service', option: 'REQUIRE_SIGNIN_VIEW', value: '{{ gitea_require_signin }}' }
+    - { section: 'mailer', option: 'ENABLED', value: '{{ gitea_mailer_enabled }}' }
+    - { section: 'mailer', option: 'HOST', value: '{{ gitea_mailer_host }}' }
+    - { section: 'mailer', option: 'FROM', value: '{{ gitea_mailer_from }}' }
+  notify: restart gitea
+
+- name: run container
+  docker_container:
+    name: gitea
+    image: gitea/gitea
+    restart_policy: unless-stopped
+    ports:
+      - "{{ gitea_ssh_port }}:22"
+    volumes:
+      - "{{ gitea_root }}:/data"
+      - /var/run/postgresql:/var/run/postgresql
+    networks:
+      - name: frontend
+  become: yes
+
+- name: modify UFW to SSH
+  ufw: rule=allow port={{ gitea_ssh_port }} proto=tcp
+  become: yes

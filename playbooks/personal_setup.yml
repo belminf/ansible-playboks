@@ -55,6 +55,9 @@
       role: gogs
       tags: gogs
     -
+      role: gitea
+      tags: gitea
+    -
       role: ssh_forwarding
       tags: ssh_forwarding
     -

@@ -1,0 +1,5 @@
+---
+
+- name: restart gitea
+  docker_container: name=gitea restart=yes
+  become: yes
