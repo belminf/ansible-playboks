@@ -99,3 +99,12 @@ a:focus {
 #email {
   margin: 10px 0 0;
 }
+
+#keys {
+  margin: 50px 0 0;
+  color: #6f6f6f;
+}
+
+#keys a {
+  color: #7c7b7b;
+}
