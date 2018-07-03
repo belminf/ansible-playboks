@@ -106,5 +106,11 @@ a:focus {
 }
 
 #keys a {
-  color: #7c7b7b;
+  text-decoration: none;
+  color: #6f6f6f;
+}
+
+#keys a:hover,
+#keys a:focus {
+  color: #d9d9d9;
 }
