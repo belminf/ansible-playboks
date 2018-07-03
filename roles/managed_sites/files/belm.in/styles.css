@@ -102,12 +102,13 @@ a:focus {
 
 #keys {
   margin: 50px 0 0;
-  color: #6f6f6f;
+  color: #8c8c8c;
+  font-size: 0.90em;
 }
 
 #keys a {
   text-decoration: none;
-  color: #6f6f6f;
+  color: #8c8c8c;
 }
 
 #keys a:hover,
