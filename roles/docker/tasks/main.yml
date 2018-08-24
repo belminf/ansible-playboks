@@ -1,7 +1,13 @@
 ---
+- name: remove docker-py
+  pip:
+    name: docker-py
+    state: absent
+  become: yes
 
-- name: install docker-py
-  pip: name=docker-py state=latest
+- name: Install docker python module
+  pip:
+    name: "docker-compose==1.12.0"
   become: yes
 
 - name: enable service
