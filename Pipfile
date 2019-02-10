@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 ansible = ">=2.4"
 cryptography = "*"
+pyyaml = ">=4.2b1"
 
 [dev-packages]
 

@@ -6,7 +6,7 @@ Collection of personal Ansible playbooks.
     $ sudo apt-get update && sudo apt-get install -y libssl-dev libffi-dev python-pip
 
 ## Python
-    $ pip install -r requirements.txt
+    $ pipenv --pre install
 
 # Playbooks
 * `personal_setup.yml` - Setup for my personal boxes
